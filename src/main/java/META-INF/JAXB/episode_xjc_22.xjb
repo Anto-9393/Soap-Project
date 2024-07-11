@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="3.0" xmlns="https://jakarta.ee/xml/ns/jaxb">
+  <!--
+
+Questo file è stato generato dall'Eclipse Implementation of JAXB, v3.0.2 
+Vedere https://eclipse-ee4j.github.io/jaxb-ri 
+Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
+Generato il: 2024.07.10 alle 03:21:18 PM CEST 
+
+  -->
+  <bindings scd="x-schema::tns" xmlns:tns="http://example.com/soap-web-service">
+    <schemaBindings map="false">
+      <package name="com.example.soap_web_service"/>
+    </schemaBindings>
+    <bindings scd="tns:AddProductRequest">
+      <class ref="com.example.soap_web_service.AddProductRequest"/>
+    </bindings>
+    <bindings scd="tns:AddProductResponse">
+      <class ref="com.example.soap_web_service.AddProductResponse"/>
+    </bindings>
+    <bindings scd="tns:IncreaseQuantityRequest">
+      <class ref="com.example.soap_web_service.IncreaseQuantityRequest"/>
+    </bindings>
+    <bindings scd="tns:IncreaseQuantityResponse">
+      <class ref="com.example.soap_web_service.IncreaseQuantityResponse"/>
+    </bindings>
+    <bindings scd="~tns:Product">
+      <class ref="com.example.soap_web_service.Product"/>
+    </bindings>
+    <bindings scd="tns:DecreaseQuantityRequest">
+      <class ref="com.example.soap_web_service.DecreaseQuantityRequest"/>
+    </bindings>
+    <bindings scd="tns:DecreaseQuantityResponse">
+      <class ref="com.example.soap_web_service.DecreaseQuantityResponse"/>
+    </bindings>
+    <bindings scd="~tns:ProductResponseCode">
+      <typesafeEnumClass ref="com.example.soap_web_service.ProductResponseCode"/>
+    </bindings>
+  </bindings>
+</bindings>
+

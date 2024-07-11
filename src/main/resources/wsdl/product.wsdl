@@ -1,0 +1,138 @@
+<definitions
+        xmlns="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://example.com/soap-web-service"
+        targetNamespace="http://example.com/soap-web-service">
+    <types>
+        <xsd:schema targetNamespace="http://example.com/soap-web-service">
+            <!-- Enumerazione per ProductResponseCode -->
+            <xsd:simpleType name="ProductResponseCode">
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="PRODUCT_CREATED"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <!-- Definizione del prodotto -->
+            <xsd:complexType name="Product">
+                <xsd:sequence>
+                    <xsd:element name="id" type="xsd:long"/>
+                    <xsd:element name="name" type="xsd:string"/>
+                    <xsd:element name="quantity" type="xsd:int"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <!-- Definizioni delle richieste e delle risposte -->
+            <xsd:element name="AddProductRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="name" type="xsd:string"/>
+                        <xsd:element name="quantity" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="AddProductResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="productEntity" type="tns:Product"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="IncreaseQuantityRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="name" type="xsd:string"/>
+                        <xsd:element name="quantity" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="IncreaseQuantityResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="productEntity" type="tns:Product"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="DecreaseQuantityRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="name" type="xsd:string"/>
+                        <xsd:element name="quantity" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="DecreaseQuantityResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="productEntity" type="tns:Product"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </types>
+    <message name="AddProductRequest">
+        <part name="parameters" element="tns:AddProductRequest"/>
+    </message>
+    <message name="AddProductResponse">
+        <part name="parameters" element="tns:AddProductResponse"/>
+    </message>
+    <message name="IncreaseQuantityRequest">
+        <part name="parameters" element="tns:IncreaseQuantityRequest"/>
+    </message>
+    <message name="IncreaseQuantityResponse">
+        <part name="parameters" element="tns:IncreaseQuantityResponse"/>
+    </message>
+    <message name="DecreaseQuantityRequest">
+        <part name="parameters" element="tns:DecreaseQuantityRequest"/>
+    </message>
+    <message name="DecreaseQuantityResponse">
+        <part name="parameters" element="tns:DecreaseQuantityResponse"/>
+    </message>
+    <portType name="ProductPortType">
+        <operation name="addProduct">
+            <input message="tns:AddProductRequest"/>
+            <output message="tns:AddProductResponse"/>
+        </operation>
+        <operation name="increaseQuantity">
+            <input message="tns:IncreaseQuantityRequest"/>
+            <output message="tns:IncreaseQuantityResponse"/>
+        </operation>
+        <operation name="decreaseQuantity">
+            <input message="tns:DecreaseQuantityRequest"/>
+            <output message="tns:DecreaseQuantityResponse"/>
+        </operation>
+    </portType>
+    <binding name="ProductBinding" type="tns:ProductPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="addProduct">
+            <soap:operation soapAction="http://example.com/soap-web-service/addProduct"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="increaseQuantity">
+            <soap:operation soapAction="http://example.com/soap-web-service/increaseQuantity"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="decreaseQuantity">
+            <soap:operation soapAction="http://example.com/soap-web-service/decreaseQuantity"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="ProduService">
+        <port name="ProductPort" binding="tns:ProductBinding">
+            <soap:address location="http://localhost:8080/ws"/>
+        </port>
+    </service>
+</definitions>

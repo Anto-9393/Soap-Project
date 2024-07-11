@@ -1,0 +1,70 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://example.com/soap-web-service"
+           targetNamespace="http://example.com/soap-web-service"
+           elementFormDefault="qualified">
+
+    <xs:element name="AddProductRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="quantity" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="AddProductResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="responseCode" type="tns:ProductResponseCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="IncreaseQuantityRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="quantity" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="IncreaseQuantityResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="productEntity" type="tns:Product  "/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DecreaseQuantityRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="quantity" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DecreaseQuantityResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="productEntity" type="tns:Product"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Product">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="quantity" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="ProductResponseCode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PRODUCT_CREATED"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
